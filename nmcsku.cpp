@@ -25,4 +25,4 @@ int main() {
     cout << endl << "minimo = " << nmin << endl;
     system("pause");
     return  0;
-    }
+}
