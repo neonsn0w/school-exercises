@@ -24,5 +24,9 @@ int main() {
     }
 
     cout << "Hai indovinato il numero in " << tentativi << " tentativi" << endl;
-
+    if (tentativi>=10) {
+        cout << "bravo";
+    } else {
+        cout << "potresti fare di meglio";
+    }
 }
