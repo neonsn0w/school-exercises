@@ -3,18 +3,8 @@
 
 using namespace std;
 
-int main () {
-    double prezzo, banconota, resto, q500=0, q200=0, q100=0, q50=0, q20=0, q10=0, q5=0, q2=0, q1 = 0;
-    bool loopbreaker = true;
-    do {
-        cout << endl << "prezzo =  ";
-        cin >> prezzo;
-    } while (prezzo <= 0);
-    do {
-        cout << endl << "banconota = ";
-        cin >> banconota;
-    // YANDEREDEV MOMENT
-    } while (banconota != 1 & banconota != 2 & banconota != 5 & banconota != 10 & banconota != 20 & banconota != 50 & banconota != 100 & banconota != 200 & banconota != 500);
+double CalcolaSconto (double prezzo, double banconota) {
+    double resto;
     if (prezzo<50) {
         resto = banconota - prezzo;
         cout << "il resto è = " << resto << endl;
@@ -31,9 +21,12 @@ int main () {
         resto = banconota - prezzo;
         cout << "il resto è = " << resto << endl;
     }
+    return resto;
+}
 
-    // while yes, it is me, Yandere Dev
-
+double CalcolaBanconote(double resto) {
+    int q500=0, q200=0, q100=0, q50=0, q20=0, q10=0, q5=0, q2=0, q1 = 0;
+    bool loopbreaker = true;
     while (loopbreaker == true)
     {
         if (resto >= 500)
@@ -95,4 +88,24 @@ int main () {
     cout << "banconote da 5 = " << q5 << endl;
     cout << "banconote da 2 = " << q2 << endl;
     cout << "banconote da 1 = " << q1 << endl;
+    return 0;
+}
+
+int main () {
+    double prezzo, banconota, resto, q500=0, q200=0, q100=0, q50=0, q20=0, q10=0, q5=0, q2=0, q1 = 0;
+    bool loopbreaker = true;
+    
+    do {
+        cout << endl << "prezzo =  ";
+        cin >> prezzo;
+    } while (prezzo <= 0);
+    
+    do {
+        cout << endl << "banconota = ";
+        cin >> banconota;
+    } while (banconota != 1 & banconota != 2 & banconota != 5 & banconota != 10 & banconota != 20 & banconota != 50 & banconota != 100 & banconota != 200 & banconota != 500);
+
+    resto = CalcolaSconto(prezzo, banconota);
+    
+    CalcolaBanconote(resto);
 }
