@@ -49,6 +49,7 @@ int main() {
 
     //Array declaration
     int v[DIM];
+    int vi[DIM];
 
     //Variable declaration
     int max, min, sum;
@@ -80,5 +81,19 @@ int main() {
     cout << "Sum = " << sum << endl;
     cout << "Avg = " << avg << endl;
 
+    //Array inversion
+    int j = DIM-1;
+    for(int i=0; i<DIM; i++) {
+        vi[j] = v[i];
+        j--;
+    }
 
+    cout << endl;
+
+    //Inverted array printing
+    for(int i=0; i<DIM; i++) {
+        cout << "vi[" << i << "] = " << vi[i] << endl;
+    }
+
+    return 0;
 }
