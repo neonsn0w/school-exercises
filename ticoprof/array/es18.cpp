@@ -3,6 +3,7 @@ Es 18. Come l’esercizio 17, ma qualora ci siano più numeri che compaiano lo s
 */
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 

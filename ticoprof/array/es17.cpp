@@ -4,6 +4,7 @@ qualora ci siano più numeri che compaiano lo stesso numero di volte stampare qu
 */
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -44,8 +45,6 @@ int main() {
     }
 
     cout << "Il numero che compare più volte è: " << nmagg << " che compare " << nvmagg << " volte." << endl;
-
-
 
     system("PAUSE");
     return 0;
