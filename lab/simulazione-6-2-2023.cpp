@@ -29,6 +29,15 @@ void esercizio2(int z) {
     }
 }
 
+bool esercizio3(char VET[], char K) {
+    for (int i=0; i<10; i++) {
+        if (VET[i] == K) {
+            return true;
+        }
+    }
+    return false;
+}
+
 int main() {
     srand(time(NULL));
 
@@ -38,6 +47,21 @@ int main() {
 
     cin >> z;
     esercizio2(z);
+
+    char VET[10];
+    char K;
+
+    for (int i=0; i<10; i++) {
+        cout << "Inserire carattere in posizione " << i << ": ";
+        cin >> VET[i];
+    }
+    cin >> K;
+
+    if (esercizio3(VET, K)) {
+        cout << "trovato" << endl;
+    } else {
+        cout << "non trovato" << endl;
+    }
 
     system("PAUSE");
     return 0;
