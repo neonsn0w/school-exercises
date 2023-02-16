@@ -20,7 +20,7 @@ void inserimentoDati(int v1[], string v2[], int dim) {
     }
 }
 
-void ordinaDati(int v1[], string v2[], int dim) {
+void ordinaDati(int v1[], string v2[], int dim) {       
     string stemp;
     int temp;
     for (int i; i < dim-1; i++) {
