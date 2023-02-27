@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -91,11 +92,8 @@ string peggiorStudente(string studenti[], float voti[], int size) {
     return peggiorStudente;
 }
 
-void rimuoviStudente(string studenti[], float voti[], int &size) {
-    string nomeStudente;
+int rimuoviStudente(string studenti[], float voti[], int &size, string nomeStudente) {
     bool isRemoved = false;
-    cout << "Inserisci il nome dello studente da rimuovere: " << endl;
-    getline(cin, nomeStudente);
     for(int i=0; i<size; i++) {
         if(nomeStudente == studenti[i]) {
             for(; i<size-1; i++) {
@@ -103,7 +101,13 @@ void rimuoviStudente(string studenti[], float voti[], int &size) {
                 voti[i] = voti[i+1];
             }
             size--;
+            isRemoved = true;
         }
+    }
+    if(isRemoved) {
+        return 0;
+    } else {
+        return -1;
     }
 }
 
@@ -129,6 +133,7 @@ int main() {
     const int DIM = 30;
     string studenti[DIM];
     float voti[DIM];
+    int removed;
     do
     {
         scelta = menu();
@@ -161,8 +166,19 @@ int main() {
         case 5:
             cout <<  endl << "Peggior studente: " << peggiorStudente(studenti, voti, size);
             break;
+        
         case 7:
-            
+            string nomeStudente;
+            cout << "Inserisci il nome dello studente da rimuovere: " << endl;
+            cin.ignore();
+            getline(cin, nomeStudente);
+            removed = rimuoviStudente(studenti, voti, size, nomeStudente);
+            if (removed<0) {
+                cout << "Studente non trovato!" << endl;
+            } else {
+                cout << "Studente rimosso." << endl;
+            }
+            break;
         }
     } while (scelta != 0);
 
