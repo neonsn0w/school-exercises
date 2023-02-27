@@ -4,6 +4,22 @@
 
 using namespace std;
 
+void clear() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+void pause() {
+    #ifdef _WIN32
+        system("pause");
+    #else
+        system("read -p 'Press Enter to continue...' var");
+    #endif
+}
+
 int menu() {
     int scelta;
     cout << endl << "1. Inserisci studenti" << endl;
@@ -58,6 +74,7 @@ void leggiVettore(string V[], float voti[], int size) {
         cout << "Voto dello studente: " << voti[i] << endl;
         cout << endl;
     }
+    pause();
 }
 
 float mediaVoti(const float voti[], int size) {
@@ -111,6 +128,10 @@ int rimuoviStudente(string studenti[], float voti[], int &size, string nomeStude
     }
 }
 
+// int aggiungiStudente((string studenti[], float voti[], int &size, string nomeStudente, float votoStudente) {
+
+// }
+
 int main() {
     //const int DIM = 2;
     //string studenti[DIM];
@@ -134,8 +155,8 @@ int main() {
     string studenti[DIM];
     float voti[DIM];
     int removed;
-    do
-    {
+    do {
+        clear();
         scelta = menu();
 
         switch(scelta) {
@@ -157,14 +178,17 @@ int main() {
 
         case 3:
             cout << endl << "Media dei voti: " << mediaVoti(voti, size);
+            pause();
             break;
 
         case 4:
             cout << endl << "Miglior studente: " << migliorStudente(studenti, voti, size);
+            pause();
             break;
 
         case 5:
             cout <<  endl << "Peggior studente: " << peggiorStudente(studenti, voti, size);
+            pause();
             break;
         
         case 7:
@@ -178,9 +202,9 @@ int main() {
             } else {
                 cout << "Studente rimosso." << endl;
             }
+            pause();
             break;
         }
     } while (scelta != 0);
-
     return 0;
 }
