@@ -128,9 +128,19 @@ int rimuoviStudente(string studenti[], float voti[], int &size, string nomeStude
     }
 }
 
-// int aggiungiStudente((string studenti[], float voti[], int &size, string nomeStudente, float votoStudente) {
+int aggiungiStudente(string studenti[], float voti[], int &size, string nomeStudente, float votoStudente) {
+    for(int i=0; i<size; i++) {
+        if(nomeStudente==studenti[i]) {
+            return -1;
+        }
+    }
 
-// }
+    size++;
+    studenti[size-1] = nomeStudente;
+    voti[size-1] = votoStudente;
+    ordinaDati(studenti, voti, size);
+    return 0;
+}
 
 int main() {
     //const int DIM = 2;
@@ -154,7 +164,8 @@ int main() {
     const int DIM = 30;
     string studenti[DIM];
     float voti[DIM];
-    int removed;
+    int removed, added;
+    string nomeStudente;
     do {
         clear();
         scelta = menu();
@@ -162,10 +173,6 @@ int main() {
         switch(scelta) {
         case 0:
             break;
-        // case 1:
-        //     cout << "Inserisci numero di studenti: ";
-        //     cin >> DIM;
-        //     break;
 
         case 1:
             cin.ignore();
@@ -190,9 +197,24 @@ int main() {
             cout <<  endl << "Peggior studente: " << peggiorStudente(studenti, voti, size);
             pause();
             break;
+
+        case 6:
+            int votoStudente;
+            cout << "Inserisci il nome dello studente da aggiungere: " << endl;
+            cin.ignore();
+            getline(cin, nomeStudente);
+            cout << "Inserisci il voto dello studente: " << endl;
+            cin >> votoStudente;
+            added = aggiungiStudente(studenti, voti, size, nomeStudente, votoStudente);
+            if (added<0) {
+                cout << "Studente già esistente!" << endl;
+            } else {
+                cout << "Studente aggiunto." << endl;
+            }
+            pause();
+            break;
         
         case 7:
-            string nomeStudente;
             cout << "Inserisci il nome dello studente da rimuovere: " << endl;
             cin.ignore();
             getline(cin, nomeStudente);
