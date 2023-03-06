@@ -5,15 +5,13 @@
 
 using namespace std;
 
-int menu()
-{
-    int choice;
+int menu() {
+    int scelta;
     cout << "1. Gioca" << endl;
     cout << "2. Esci" << endl;
     cout << "Scelta: ";
-    cout.flush();
-    cin >> choice;
-    return choice;
+    cin >> scelta;
+    return scelta;
 }
 
 void codiceCasuale(string code[], int SIZE) {
@@ -144,7 +142,7 @@ int main() {
 
     srand(time(NULL));
 
-    cout << "Benvenuto in MasterMind!" << endl;
+    cout << "Benvenuto in Master Mind!" << endl;
 
     codiceCasuale(code, SIZE);
 
