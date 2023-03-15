@@ -50,7 +50,7 @@ void caricaInsieme(int ins1[], int ins2[], int size) {
 
 void intersezione(int ins1[], int ins2[], int size, int inters[], int &intersize) {
     for (int i=0; i<size; i++) {
-        for (int j=i; j<size; j++) {
+        for (int j=0; j<size; j++) {
             if(ins1[i] == ins2[j]) {
                 inters[intersize] = ins1[i];
                 intersize++;
@@ -59,8 +59,29 @@ void intersezione(int ins1[], int ins2[], int size, int inters[], int &intersize
     }
 }
 
+void unione(int ins1[], int ins2[], int size, int un[], int &unsize) {
+    int size1 = size;
+    int size2 = size;
+    int i=0, j=0;
+
+    while (i < size1 && j < size2) {
+        if (ins1[i] < ins2[j]) {
+            un[unsize] = ins1[i];
+            i++;
+        } else if (ins1[i] > ins2[j]) {
+            un[unsize] = ins2[j];
+            j++;
+        } else {
+            un[unsize] = ins1[i];
+            i++;
+            j++;
+        }
+        unsize++;
+    }
+}
+
 int main() {
-    int size, intersize = 0;
+    int size, intersize = 0, unsize = 0;
     const int DIM = 30;
     cout << "Inserisci la dimensione dell'insieme: " << endl;
     cin >> size;
@@ -69,8 +90,13 @@ int main() {
     caricaInsieme(ins1, ins2, size);
     int inters[DIM];
     intersezione(ins1, ins2, size, inters, intersize);
-    for (int i=0; i<size; i++) {
+    for (int i=0; i<intersize; i++) {
         cout << inters[i] << endl;
+    }
+    int un[DIM];
+    unione(ins1, ins2, size, un, unsize);
+    for (int i=0; i<unsize; i++) {
+        cout << un[i] << endl;
     }
     return 0;
 }
