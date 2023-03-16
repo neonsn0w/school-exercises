@@ -42,7 +42,7 @@ int isConvertible(string s) {
 // Funzione per convertire una stringa in intero
 double tboi(string s, int sign) {
     bool point = false;
-    int tencounter = 1;
+    double tencounter = 1;
     double result = 0;
     for (int i = 0; i < s.length(); i++) {
         if (s[i] == '.') {
@@ -51,7 +51,7 @@ double tboi(string s, int sign) {
         if (s[i] >= '0' && s[i] <= '9') {
             if (point) {
                 tencounter *= 10;
-                result = result + ((s[i] - '0') / tencounter);
+                result = result + ((s[i] - '0') / tencounter); // + (s[i] - '0')
             } else {
                 result = result * 10 + (s[i] - '0');
             }
