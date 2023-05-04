@@ -35,9 +35,6 @@ int menu() {
     int scelta;
     cout << endl << "1. Inserisci un libro" << endl;
     cout << "2. Visualizza la lista dei libri" << endl;
-    cout << "3. Conta le vocali della stringa" << endl;
-    cout << "4. Aggiungi un'altra stringa nella stringa principale" << endl;
-    cout << "5. Estrai una sottostringa data la posizione di inizio e la lunghezza" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -59,6 +56,17 @@ void inserisciLibro(recLibro libri[], int &nLibri) {
     nLibri++;
 }
 
+void visualizzaLibri(recLibro libri[], int nLibri) {
+    for (int i = 0; i < nLibri; i++) {
+        cout << "Titolo: " << libri[i].titolo << endl;
+        cout << "Codice: " << libri[i].codice << endl;
+        cout << "Pagine: " << libri[i].pagine << endl;
+        cout << "Prezzo: " << libri[i].prezzo << endl;
+        cout << "------------------------------------";
+        cout << endl;
+    }
+}
+
 int main() {
     int scelta;
     int nLibri=0;
@@ -69,12 +77,19 @@ int main() {
         scelta = menu();
 
         switch(scelta) {
-        case 0:
-            break;
+            case 0:
+                break;
 
-        case 1:
-            clear();
-            inserisciLibro(libri, nLibri);
-        }
+            case 1:
+                clear();
+                inserisciLibro(libri, nLibri);
+                break;
+
+            case 2:
+                clear();
+                visualizzaLibri(libri, nLibri);
+                pause();
+                break;
+            }
     } while (scelta != 0);
 }
