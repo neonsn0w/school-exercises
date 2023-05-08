@@ -35,6 +35,7 @@ int menu() {
     int scelta;
     cout << endl << "1. Inserisci un libro" << endl;
     cout << "2. Visualizza la lista dei libri" << endl;
+    cout << "3. Visualizza la lista dei libri ordinata per nome" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -56,6 +57,7 @@ void inserisciLibro(recLibro libri[], int &nLibri) {
     nLibri++;
 }
 
+// Funzione per visualizzare i libri
 void visualizzaLibri(recLibro libri[], int nLibri) {
     for (int i = 0; i < nLibri; i++) {
         cout << "Titolo: " << libri[i].titolo << endl;
@@ -66,7 +68,40 @@ void visualizzaLibri(recLibro libri[], int nLibri) {
         cout << endl;
     }
 }
+// Funzione per ordinare i dati per titolo
+void ordinaDati(recLibro v1[], int dim) {
+    recLibro temp;
+    for (int i=0; i < dim-1; i++) {
+        for (int j=i+1; j < dim; j++) {
+            if (v1[i].titolo > v1[j].titolo) {
+                temp = v1[i];
+                v1[i] = v1[j];
+                v1[j] = temp;
+            }
+        }
+    }
+}
 
+// Funzione per visualizzare i libri ordinati per nome
+void visualizzaLibriOrdinatiNome(recLibro libri[], int nLibri) {
+    recLibro libriOrdinati[100];
+    for (int i = 0; i < nLibri; i++) {
+        libriOrdinati[i] = libri[i];
+    }
+
+    ordinaDati(libriOrdinati, nLibri);
+
+    for (int i = 0; i < nLibri; i++) {
+        cout << "Titolo: " << libriOrdinati[i].titolo << endl;
+        cout << "Codice: " << libriOrdinati[i].codice << endl;
+        cout << "Pagine: " << libriOrdinati[i].pagine << endl;
+        cout << "Prezzo: " << libriOrdinati[i].prezzo << endl;
+        cout << "------------------------------------";
+        cout << endl;
+    }
+}
+
+// main
 int main() {
     int scelta;
     int nLibri=0;
@@ -88,6 +123,12 @@ int main() {
             case 2:
                 clear();
                 visualizzaLibri(libri, nLibri);
+                pause();
+                break;
+
+            case 3:
+                clear();
+                visualizzaLibriOrdinatiNome(libri, nLibri);
                 pause();
                 break;
             }
