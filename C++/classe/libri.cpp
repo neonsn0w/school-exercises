@@ -73,7 +73,7 @@ void ordinaDati(recLibro v1[], int dim) {
     recLibro temp;
     for (int i=0; i < dim-1; i++) {
         for (int j=i+1; j < dim; j++) {
-            if (v1[i].titolo > v1[j].titolo) {
+            if (v1[i].titolo < v1[j].titolo) {
                 temp = v1[i];
                 v1[i] = v1[j];
                 v1[j] = temp;
