@@ -35,6 +35,7 @@ int menu() {
     cout << "3. Visualizza la lista dei piloti" << endl;
     cout << "4. Visualizza la lista dei circuiti" << endl;
     cout << "5. Visualizza i piloti di una scuderia" << endl;
+    cout << "6. Inserisci i tempi di arrivo dei piloti" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -91,11 +92,22 @@ void elencaPilotiScuderia(tpiloti piloti[], int nPiloti) {
     }
 }
 
+void inserisciArrivi(tpiloti piloti[], int nPiloti, string circuiti[], int nCircuiti, int arrivi[][10]) {
+    for(int i=0; i<nPiloti; i++) {
+        for(int j=0; j<nCircuiti; j++) {
+            cout << "Inserisci il tempo di arrivo di " << piloti[i].nome << " al circuito " << circuiti[j] << ": ";
+            cin >> arrivi[i][j];
+        }
+    }
+}
+
 int main() {
     tpiloti piloti[20];
     string circuiti[10];
     int arrivi[20][10];
     int scelta, nPiloti = 0, nCircuiti = 0;
+
+
 
     do {
         clear();
@@ -123,6 +135,10 @@ int main() {
                 clear();
                 elencaPilotiScuderia(piloti, nPiloti);
                 pause();
+                break;
+            case 6:
+                clear();
+                inserisciArrivi(piloti, nPiloti, circuiti, nCircuiti, arrivi);
                 break;
         }
     } while (scelta != 0);
