@@ -36,6 +36,7 @@ int menu() {
     cout << endl << "1. Inserisci un libro" << endl;
     cout << "2. Visualizza la lista dei libri" << endl;
     cout << "3. Visualizza la lista dei libri ordinata per nome" << endl;
+    cout << "4. Ricerca un libro dato il codice" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -57,23 +58,22 @@ void inserisciLibro(recLibro libri[], int &nLibri) {
     nLibri++;
 }
 
-// Funzione per visualizzare i libri
-void visualizzaLibri(recLibro libri[], int nLibri) {
-    for (int i = 0; i < nLibri; i++) {
-        cout << "Titolo: " << libri[i].titolo << endl;
-        cout << "Codice: " << libri[i].codice << endl;
-        cout << "Pagine: " << libri[i].pagine << endl;
-        cout << "Prezzo: " << libri[i].prezzo << endl;
-        cout << "------------------------------------";
-        cout << endl;
-    }
+// Funzione per visualizzare un libro
+void visualizzaLibro(recLibro libri[], int nLibri, int i) {
+    cout << "Titolo: " << libri[i].titolo << endl;
+    cout << "Codice: " << libri[i].codice << endl;
+    cout << "Pagine: " << libri[i].pagine << endl;
+    cout << "Prezzo: " << libri[i].prezzo << endl;
+    cout << "------------------------------------";
+    cout << endl;
 }
+
 // Funzione per ordinare i dati per titolo
 void ordinaDati(recLibro v1[], int dim) {
     recLibro temp;
     for (int i=0; i < dim-1; i++) {
         for (int j=i+1; j < dim; j++) {
-            if (v1[i].titolo > v1[j].titolo) {
+            if (v1[i].titolo < v1[j].titolo) {
                 temp = v1[i];
                 v1[i] = v1[j];
                 v1[j] = temp;
@@ -101,9 +101,19 @@ void visualizzaLibriOrdinatiNome(recLibro libri[], int nLibri) {
     }
 }
 
+// Ricerca del libro dato il codice
+int ricercaLibroCodice(recLibro libri[], int nLibri, int codice) {
+    for (int i = 0; i < nLibri; i++) {
+        if (libri[i].codice == codice) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 // main
 int main() {
-    int scelta;
+    int scelta, codice;
     int nLibri=0;
     const int MAX_LIBRI = 100;
     recLibro libri[MAX_LIBRI];
@@ -122,13 +132,29 @@ int main() {
 
             case 2:
                 clear();
-                visualizzaLibri(libri, nLibri);
+                for(int i=0; i < nLibri; i++) {
+                    visualizzaLibro(libri, nLibri, i);
+                }
                 pause();
                 break;
 
             case 3:
                 clear();
                 visualizzaLibriOrdinatiNome(libri, nLibri);
+                pause();
+                break;
+
+            case 4:
+                clear();
+                cout << "Inserisci il codice del libro da cercare: ";
+                cin >> codice;
+                codice = ricercaLibroCodice(libri, nLibri, codice);
+                clear();
+                if (codice==-1) {
+                    cout << "Libro non trovato" << endl;
+                } else {
+                    visualizzaLibro(libri, nLibri, codice);
+                }
                 pause();
                 break;
             }
