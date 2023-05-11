@@ -34,6 +34,7 @@ int menu() {
     cout << "2. Inserisci un circuito" << endl;
     cout << "3. Visualizza la lista dei piloti" << endl;
     cout << "4. Visualizza la lista dei circuiti" << endl;
+    cout << "5. Visualizza i piloti di una scuderia" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -56,7 +57,8 @@ void inserisciPilota(tpiloti piloti[], int &nPiloti) {
 // Funzione per inserire un circuito
 void inserisciCircuito(string circuiti[], int &nCircuiti) {
     cout << "Inserisci il nome del circuito: ";
-    cin >> circuiti[nCircuiti];
+    cin.ignore();
+    getline(cin, circuiti[nCircuiti]);
     nCircuiti++;
 }
 
@@ -110,10 +112,17 @@ int main() {
             case 3:
                 clear();
                 elencoPiloti(piloti, nPiloti);
+                pause();
                 break;
             case 4:
                 clear();
                 elencoCircuiti(circuiti, nCircuiti);
+                pause();
+                break;
+            case 5:
+                clear();
+                elencaPilotiScuderia(piloti, nPiloti);
+                pause();
                 break;
         }
     } while (scelta != 0);
