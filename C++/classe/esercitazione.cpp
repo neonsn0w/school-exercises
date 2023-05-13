@@ -36,6 +36,8 @@ int menu() {
     cout << "4. Visualizza la lista dei circuiti" << endl;
     cout << "5. Visualizza i piloti di una scuderia" << endl;
     cout << "6. Inserisci i tempi di arrivo dei piloti" << endl;
+    cout << "7. Visualizza i tempi di arrivo dei piloti" << endl;
+    cout << "8. Visualizza in quali gare ha vinto un pilota" << endl;
     cout << endl << "0. Esci" << endl;
 
     cout << endl << "Inserisci scelta: ";
@@ -92,11 +94,44 @@ void elencaPilotiScuderia(tpiloti piloti[], int nPiloti) {
     }
 }
 
+// Funzione che inserisce i tempi di arrivo dei piloti
 void inserisciArrivi(tpiloti piloti[], int nPiloti, string circuiti[], int nCircuiti, int arrivi[][10]) {
     for(int i=0; i<nPiloti; i++) {
         for(int j=0; j<nCircuiti; j++) {
             cout << "Inserisci il tempo di arrivo di " << piloti[i].nome << " al circuito " << circuiti[j] << ": ";
             cin >> arrivi[i][j];
+        }
+    }
+}
+
+// Funzione per visualizzare i tempi di arrivo dei piloti
+void visualizzaArrivi(tpiloti piloti[], int nPiloti, string circuiti[], int nCircuiti, int arrivi[][10]) {
+    for(int i=0; i<nPiloti; i++) {
+        for(int j=0; j<nCircuiti; j++) {
+            cout << "Il pilota " << piloti[i].nome << " ha fatto il tempo di " << arrivi[i][j] << " al circuito " << circuiti[j] << endl;
+        }
+    }
+}
+
+// Funzione che cerca un pilota dato il nome
+int cercaPilota(tpiloti piloti[], int nPiloti, char nome[]) {
+    for(int i=0; i<nPiloti; i++) {
+        if(piloti[i].nome == nome) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Funzione che ritorna le gare in cui un dato pilato ha vinto
+void vittoriaPilota(tpiloti piloti[], int n, int arrivi[][10], string circuiti[], int nCircuiti) {
+    if (n==-1) {
+        cout << "Nome non valido" << endl;
+    } else {
+        for(int i=0; i<nCircuiti; i++) {
+            if(arrivi[n][i]==1) {
+                cout << "Il pilota " << piloti[n].nome << " ha vinto la gara nel circuito " << nCircuiti;
+            }
         }
     }
 }
@@ -139,6 +174,19 @@ int main() {
             case 6:
                 clear();
                 inserisciArrivi(piloti, nPiloti, circuiti, nCircuiti, arrivi);
+                break;
+            case 7:
+                clear();
+                visualizzaArrivi(piloti, nPiloti, circuiti, nCircuiti, arrivi);
+                pause();
+                break;
+            case 8:
+                clear();
+                char nome[69];
+                cout << "Inserisci il nome del pilota: ";
+                cin >> nome;
+                vittoriaPilota(piloti, cercaPilota(piloti, nPiloti, nome), arrivi, circuiti, nCircuiti);
+                pause();
                 break;
         }
     } while (scelta != 0);
