@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Collezione di CD
+ */
 public class Collezione {
     static Scanner sc = new Scanner(System.in);
 
@@ -11,23 +14,38 @@ public class Collezione {
         cds = new CD[n];
     }
 
-    // Metodo che ritorna l'oggetto CD della collezione nella posizione indicata in input
+    /**
+     * Metodo che ritorna l'oggetto CD della collezione nella posizione indicata in input
+     *
+     * @param index indice del CD da ritornare
+     * @return CD
+     */
     public CD getCD(int index) {
         return cds[index];
     }
 
-    // Questo metodo viene usato solo all'interno della classe
-    // Metodo sostituisce il CD nella posizione indicata
+    /**
+     * Questo metodo viene usato solo all'interno della classe
+     * Metodo sostituisce il CD nella posizione indicata
+     *
+     * @param index indice del CD da sostituire
+     * @param cd CD con cui sostituire il CD originale
+     */
     private void setCD(int index, CD cd) {
         cds[index] = cd;
     }
 
-    // Metodo che restituisce il numero di CD nella collezione
+    /**
+     * Metodo che restituisce il numero di CD nella collezione
+     * @return Numero dei CD presenti nella collezione
+     */
     public int getNCD() {
         return nCD;
     }
 
-    // Metodo utilizzato in fase di test del programma per inserire dei valori di test
+    /**
+     * Metodo utilizzato in fase di test del programma per inserire dei valori di test
+     */
     public void inserisciValoriDiTest() {
         setCD(nCD, new CD("Supercell feat. Hatsune Miku", "ryo (supercell)", 8, 393939));
         nCD++;
@@ -41,7 +59,9 @@ public class Collezione {
         Tools.pause();
     }
 
-    // Metodo che aggiunge un CD alla collezione
+    /**
+     * Metodo che aggiunge un CD alla collezione
+     */
     public void aggiungiCD() {
         String titolo, autore, brani_string, minuti_string, secondi_string;
         int brani=0, minuti=0, secondi=0;
@@ -94,7 +114,10 @@ public class Collezione {
         nCD++;
     }
 
-    // Metodo che visualizza le informaizoni del CD nella posizione specificata
+    /**
+     * Metodo che visualizza le informaizoni del CD nella posizione specificata
+     * @param index indice del libro da visualizzare
+     */
     public void visualizzaUnCD(int index) {
         System.out.println("CD NUMERO " + (index+1));
         System.out.println("Titolo: " + cds[index].getTitolo());
@@ -105,7 +128,9 @@ public class Collezione {
         System.out.println();
     }
 
-    // Metodo che visualizza tutti i CD della collezione
+    /**
+     * Metodo che visualizza tutti i CD della collezione
+     */
     public void visualizzaListaCD() {
         System.out.println("Nel negozio ci sono " + nCD + " cds\n");
         if (nCD != 0) {
@@ -118,7 +143,10 @@ public class Collezione {
         Tools.pause();
     }
 
-    // Metodo che rimuove un CD dalla collezione
+    /**
+     * Metodo che rimuove un CD dalla collezione
+     * @param index indice del CD da rimuovere
+     */
     public void rimuoviCD(int index) {
         for (int i=index; i<nCD-1; i++) {
             cds[i] = cds[i+1];
@@ -127,7 +155,11 @@ public class Collezione {
         nCD--;
     }
 
-    // Metodo che restituisce la posizione del CD con il titolo ricercato
+    /**
+     * Metodo che restituisce la posizione del CD con il titolo ricercato
+     * @param s Titolo del CD da cercare
+     * @return Ritorna l'indice del CD da cercare, in caso di errore ritorna -1
+     */
     public int ricercaPerTitolo(String s) {
         for (int i=0; i<nCD-1; i++) {
             if (s.compareToIgnoreCase(cds[i].getTitolo()) == 0) {
@@ -137,7 +169,12 @@ public class Collezione {
         return -1;
     }
 
-    // Metodo che modifica uno o più attributi di uno specifico CD
+    /**
+     * Metodo che modifica uno o più attributi di uno specifico CD
+     *
+     * @param collezione Oggetto collezione
+     * @param index Indice del CD da modificare
+     */
     public void modificaCD(Collezione collezione, int index) {
         int scelta = 0;
         boolean check = true;
